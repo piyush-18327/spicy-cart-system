@@ -13,7 +13,9 @@ export const products = [
     category: "Biryani",
     isVeg: false,
     rating: 4.5,
-    description: "Aromatic basmati rice cooked with tender boneless chicken in traditional Hyderabadi style"
+    description: "Aromatic basmati rice cooked with tender boneless chicken in traditional Hyderabadi style with saffron and authentic spices",
+    customizable: true,
+    serves: "1-2"
   },
   {
     id: "2", 
@@ -23,7 +25,8 @@ export const products = [
     category: "Starters",
     isVeg: false,
     rating: 4.3,
-    description: "Juicy chicken seekh kebabs grilled to perfection with aromatic spices"
+    description: "Juicy chicken seekh kebabs grilled to perfection with aromatic spices and served with mint chutney",
+    serves: "1"
   },
   {
     id: "3",
@@ -33,7 +36,9 @@ export const products = [
     category: "Starters", 
     isVeg: false,
     rating: 4.4,
-    description: "Spicy and crispy chicken 65 pieces with South Indian flavors"
+    description: "Spicy and crispy chicken 65 pieces with South Indian flavors, curry leaves and green chilies",
+    customizable: true,
+    serves: "1"
   },
   {
     id: "4",

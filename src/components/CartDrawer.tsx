@@ -5,7 +5,12 @@ import { Separator } from "@/components/ui/separator";
 import { ShoppingCart, Plus, Minus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 
-export const CartDrawer = () => {
+interface CartDrawerProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export const CartDrawer = ({ isOpen, onClose }: CartDrawerProps = {}) => {
   const { items, updateQuantity, removeItem, getTotal, getItemCount } = useCart();
 
   const subtotal = getTotal();
@@ -15,8 +20,9 @@ export const CartDrawer = () => {
   const totalAmount = subtotal + cgst + sgst + packagingCharge;
 
   return (
-    <Sheet>
-      <SheetTrigger asChild>
+    <Sheet open={isOpen} onOpenChange={onClose}>
+      {!isOpen && (
+        <SheetTrigger asChild>
         <Button 
           className="fixed bottom-6 right-6 rounded-full w-14 h-14 shadow-[var(--shadow-strong)] bg-[var(--gradient-primary)] hover:bg-primary-hover z-50"
           size="icon"
@@ -29,6 +35,7 @@ export const CartDrawer = () => {
           )}
         </Button>
       </SheetTrigger>
+      )}
       
       <SheetContent className="w-full sm:max-w-lg">
         <SheetHeader>

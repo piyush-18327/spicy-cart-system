@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
+import { CategoryCard } from "@/components/CategoryCard";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +9,9 @@ import { Search, MapPin, Clock } from "lucide-react";
 import { products } from "@/data/products";
 import { useCart } from "@/hooks/useCart";
 import biryaniHero from "@/assets/biryani-hero.jpg";
+import chickenKebab from "@/assets/chicken-kebab.jpg";
+import chicken65 from "@/assets/chicken-65.jpg";
+import jeeraRaita from "@/assets/jeera-raita.jpg";
 
 const Index = () => {
   const { addItem } = useCart();
@@ -15,6 +19,33 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const categories = ["All", "Biryani", "Starters", "Sides", "Beverages"];
+
+  const categoryCards = [
+    {
+      category: "Biryani",
+      image: biryaniHero,
+      itemCount: products.filter(p => p.category === "Biryani").length,
+      description: "Traditional Hyderabadi flavors"
+    },
+    {
+      category: "Starters", 
+      image: chickenKebab,
+      itemCount: products.filter(p => p.category === "Starters").length,
+      description: "Grilled to perfection"
+    },
+    {
+      category: "Sides",
+      image: jeeraRaita, 
+      itemCount: products.filter(p => p.category === "Sides").length,
+      description: "Perfect accompaniments"
+    },
+    {
+      category: "Beverages",
+      image: jeeraRaita,
+      itemCount: products.filter(p => p.category === "Beverages").length,
+      description: "Refreshing drinks"
+    }
+  ];
 
   const filteredProducts = products.filter(product => {
     const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
@@ -82,8 +113,22 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Category Filter */}
+      {/* Category Cards */}
       <div className="container mx-auto px-4 py-6">
+        <h2 className="text-xl font-bold mb-4">Browse Categories</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          {categoryCards.map((categoryCard) => (
+            <CategoryCard
+              key={categoryCard.category}
+              category={categoryCard.category}
+              image={categoryCard.image}
+              itemCount={categoryCard.itemCount}
+              description={categoryCard.description}
+            />
+          ))}
+        </div>
+        
+        {/* Category Filter */}
         <div className="flex gap-2 overflow-x-auto pb-2">
           {categories.map((category) => (
             <Button
