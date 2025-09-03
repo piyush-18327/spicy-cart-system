@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { ArrowLeft, Search } from "lucide-react";
 import { products } from "@/data/products";
-import { useCart } from "@/hooks/useCart";
+import { useCart } from "@/contexts/CartContext";
 
 const CategoryPage = () => {
   const { categoryName } = useParams<{ categoryName: string }>();
