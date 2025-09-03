@@ -96,7 +96,7 @@ const CategoryPage = () => {
         )}
       </div>
 
-      <CartBottomBar />
+      
     </div>
   );
 };

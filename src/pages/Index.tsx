@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Search, MapPin, Clock } from "lucide-react";
 import { products } from "@/data/products";
-import { useCart } from "@/hooks/useCart";
+import { useCart } from "@/contexts/CartContext";
 import biryaniHero from "@/assets/biryani-hero.jpg";
 import chickenKebab from "@/assets/chicken-kebab.jpg";
 import chicken65 from "@/assets/chicken-65.jpg";

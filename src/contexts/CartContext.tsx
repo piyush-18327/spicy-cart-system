@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { toast } from "@/components/ui/use-toast";
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { toast } from "@/hooks/use-toast";
 
 export interface CartItem {
   id: string;
@@ -9,8 +9,34 @@ export interface CartItem {
   quantity: number;
 }
 
-export const useCart = () => {
-  const [items, setItems] = useState<CartItem[]>([]);
+interface CartContextType {
+  items: CartItem[];
+  addItem: (product: any) => void;
+  updateQuantity: (id: string, quantity: number) => void;
+  removeItem: (id: string) => void;
+  getTotal: () => number;
+  getItemCount: () => number;
+  clearCart: () => void;
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
+
+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [items, setItems] = useState<CartItem[]>(() => {
+    // Load cart from localStorage on initialization
+    if (typeof window !== 'undefined') {
+      const savedCart = localStorage.getItem('cart');
+      return savedCart ? JSON.parse(savedCart) : [];
+    }
+    return [];
+  });
+
+  // Save cart to localStorage whenever items change
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cart', JSON.stringify(items));
+    }
+  }, [items]);
 
   const addItem = (product: any) => {
     setItems(prev => {
@@ -75,13 +101,25 @@ export const useCart = () => {
     setItems([]);
   };
 
-  return {
-    items,
-    addItem,
-    updateQuantity,
-    removeItem,
-    getTotal,
-    getItemCount,
-    clearCart
-  };
+  return (
+    <CartContext.Provider value={{
+      items,
+      addItem,
+      updateQuantity,
+      removeItem,
+      getTotal,
+      getItemCount,
+      clearCart
+    }}>
+      {children}
+    </CartContext.Provider>
+  );
+};
+
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (context === undefined) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
 };
