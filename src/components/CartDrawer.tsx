@@ -1,6 +1,5 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ShoppingCart, Plus, Minus, Trash2 } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
@@ -21,22 +20,6 @@ export const CartDrawer = ({ isOpen, onClose }: CartDrawerProps = {}) => {
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      {!isOpen && (
-        <SheetTrigger asChild>
-        <Button 
-          className="fixed bottom-6 right-6 rounded-full w-14 h-14 shadow-[var(--shadow-strong)] bg-[var(--gradient-primary)] hover:bg-primary-hover z-50"
-          size="icon"
-        >
-          <ShoppingCart className="h-6 w-6" />
-          {getItemCount() > 0 && (
-            <Badge className="absolute -top-2 -right-2 h-6 w-6 rounded-full p-0 flex items-center justify-center bg-destructive text-destructive-foreground">
-              {getItemCount()}
-            </Badge>
-          )}
-        </Button>
-      </SheetTrigger>
-      )}
-      
       <SheetContent className="w-full sm:max-w-lg">
         <SheetHeader>
           <SheetTitle className="text-left">My Order</SheetTitle>

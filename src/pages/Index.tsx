@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryCard } from "@/components/CategoryCard";
-import { CartDrawer } from "@/components/CartDrawer";
+
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -162,7 +162,7 @@ const Index = () => {
         )}
       </div>
 
-      <CartDrawer />
+      
     </div>
   );
 };
