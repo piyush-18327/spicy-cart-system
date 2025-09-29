@@ -3,22 +3,116 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>spicy-cart-system</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+    <title>Biryani Blues - Authentic Hyderabadi Flavors</title>
+    <meta name="description" content="Order delicious Hyderabadi biryani and kebabs online. Fast delivery, authentic flavors." />
+    <meta name="author" content="Biryani Blues" />
 
-    <meta property="og:title" content="spicy-cart-system" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:title" content="Biryani Blues - Authentic Hyderabadi Flavors" />
+    <meta property="og:description" content="Order delicious Hyderabadi biryani and kebabs online. Fast delivery, authentic flavors." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              background: 'hsl(48 10% 98%)',
+              foreground: 'hsl(20 14.3% 4.1%)',
+              card: 'hsl(0 0% 100%)',
+              'card-foreground': 'hsl(20 14.3% 4.1%)',
+              primary: 'hsl(14 88% 55%)',
+              'primary-foreground': 'hsl(0 0% 100%)',
+              'primary-hover': 'hsl(14 88% 48%)',
+              secondary: 'hsl(48 100% 96%)',
+              'secondary-foreground': 'hsl(20 14.3% 4.1%)',
+              muted: 'hsl(48 100% 95%)',
+              'muted-foreground': 'hsl(25 5.3% 44.7%)',
+              accent: 'hsl(48 100% 95%)',
+              'accent-foreground': 'hsl(20 14.3% 4.1%)',
+              destructive: 'hsl(0 84.2% 60.2%)',
+              'destructive-foreground': 'hsl(0 0% 98%)',
+              border: 'hsl(48 100% 90%)',
+              input: 'hsl(48 100% 90%)',
+              ring: 'hsl(14 88% 55%)',
+              success: 'hsl(142 76% 36%)',
+              'success-foreground': 'hsl(0 0% 98%)'
+            }
+          }
+        }
+      }
+    </script>
   </head>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body class="bg-background text-foreground">
+    <div id="app">
+      <!-- Loading state -->
+      <div class="min-h-screen flex items-center justify-center">
+        <div class="text-center">
+          <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+          <p class="mt-4 text-muted-foreground">Loading delicious food...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Bottom Bar (initially hidden) -->
+    <div id="cartBottomBar" class="fixed bottom-0 left-0 right-0 z-50 bg-primary text-primary-foreground shadow-lg border-t hidden">
+      <div class="container mx-auto px-4">
+        <button id="cartButton" class="w-full h-14 bg-transparent hover:bg-black/10 text-primary-foreground flex items-center justify-between text-base font-medium transition-colors">
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <i data-lucide="shopping-bag" class="h-5 w-5"></i>
+              <span id="cartBadge" class="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-destructive text-destructive-foreground text-xs flex items-center justify-center">0</span>
+            </div>
+            <span id="cartItemsText">0 items</span>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <span id="cartTotal">₹0.00</span>
+            <span class="text-sm opacity-90">VIEW CART</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Cart Drawer Overlay -->
+    <div id="cartOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+      <div id="cartDrawer" class="fixed right-0 top-0 h-full w-full max-w-md bg-card shadow-xl transform translate-x-full transition-transform duration-300">
+        <div class="p-6 border-b">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl font-bold">My Order</h2>
+            <button id="closeCartButton" class="p-2 hover:bg-accent rounded-lg">
+              <i data-lucide="x" class="h-5 w-5"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="flex-1 overflow-auto p-6">
+          <div id="cartContent">
+            <!-- Cart items will be inserted here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

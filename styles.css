@@ -1,0 +1,163 @@
+/* Food Ordering App Design System - Warm, appetizing colors */
+
+:root {
+  --background: 48 10% 98%;
+  --foreground: 20 14.3% 4.1%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+
+  /* Warm orange primary for food appeal */
+  --primary: 14 88% 55%;
+  --primary-foreground: 0 0% 100%;
+  --primary-hover: 14 88% 48%;
+
+  /* Warm secondary tones */
+  --secondary: 48 100% 96%;
+  --secondary-foreground: 20 14.3% 4.1%;
+
+  --muted: 48 100% 95%;
+  --muted-foreground: 25 5.3% 44.7%;
+
+  --accent: 48 100% 95%;
+  --accent-foreground: 20 14.3% 4.1%;
+
+  /* Red for removing items */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 48 100% 90%;
+  --input: 48 100% 90%;
+  --ring: 14 88% 55%;
+
+  /* Custom food app colors */
+  --success: 142 76% 36%;
+  --success-foreground: 0 0% 98%;
+  
+  /* Gradients for visual appeal */
+  --gradient-primary: linear-gradient(135deg, hsl(14 88% 55%), hsl(20 90% 48%));
+  --gradient-warm: linear-gradient(180deg, hsl(48 100% 98%), hsl(48 100% 96%));
+  
+  /* Shadows for depth */
+  --shadow-soft: 0 2px 8px hsl(14 88% 55% / 0.1);
+  --shadow-medium: 0 4px 16px hsl(14 88% 55% / 0.15);
+  --shadow-strong: 0 8px 24px hsl(14 88% 55% / 0.2);
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  /* ... other dark mode variables */
+}
+
+/* Custom utility classes */
+.gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+.shadow-medium {
+  box-shadow: var(--shadow-medium);
+}
+
+.shadow-strong {
+  box-shadow: var(--shadow-strong);
+}
+
+/* Text gradient for branding */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Smooth transitions */
+.transition-all-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Cart drawer animation */
+.cart-drawer-enter {
+  transform: translateX(0);
+}
+
+.cart-drawer-exit {
+  transform: translateX(100%);
+}
+
+/* Toast animations */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.toast-enter {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.toast-exit {
+  animation: slideOutRight 0.3s ease-out;
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
