@@ -88,36 +88,33 @@ const PRODUCTS = [
   }
 ];
 
-const CATEGORIES = ["All", "Biryani", "Starters", "Sides", "Beverages"];
-
 const CATEGORY_CARDS = [
   {
-    category: "Biryani",
-    image: "src/assets/biryani-hero.jpg",
-    itemCount: PRODUCTS.filter(p => p.category === "Biryani").length,
-    description: "Traditional Hyderabadi flavors"
+    category: "Hyderabadi & Lucknowi Dum Biryanis",
+    image: "https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    itemCount: 12,
+    description: "Authentic royal recipes"
   },
   {
-    category: "Starters", 
-    image: "src/assets/chicken-kebab.jpg",
-    itemCount: PRODUCTS.filter(p => p.category === "Starters").length,
-    description: "Grilled to perfection"
+    category: "Biryani Thalis",
+    image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    itemCount: 8,
+    description: "Complete meal experience"
   },
   {
-    category: "Sides",
-    image: "src/assets/jeera-raita.jpg", 
-    itemCount: PRODUCTS.filter(p => p.category === "Sides").length,
-    description: "Perfect accompaniments"
+    category: "Celebration Handi Biryanis",
+    image: "https://images.pexels.com/photos/1437316/pexels-photo-1437316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    itemCount: 6,
+    description: "Perfect for special occasions"
   },
   {
-    category: "Beverages",
-    image: "src/assets/jeera-raita.jpg",
-    itemCount: PRODUCTS.filter(p => p.category === "Beverages").length,
-    description: "Refreshing drinks"
+    category: "Supersaver Mini Biryanis Starting @ Rs.99/-",
+    image: "https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    itemCount: 10,
+    description: "Budget-friendly options"
   }
 ];
 
 // Export for use in other files
 window.PRODUCTS = PRODUCTS;
-window.CATEGORIES = CATEGORIES;
 window.CATEGORY_CARDS = CATEGORY_CARDS;

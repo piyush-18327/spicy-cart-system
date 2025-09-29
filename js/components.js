@@ -1,83 +1,20 @@
 // Reusable component functions for generating HTML
 
-function createProductCard(product, onAddToCart) {
-  const discountAmount = product.originalPrice ? product.originalPrice - product.price : 0;
-  
-  return `
-    <div class="group overflow-hidden transition-all duration-300 hover:shadow-medium hover:-translate-y-1 border border-border/50 rounded-lg bg-card">
-      <div class="relative overflow-hidden">
-        <img
-          src="${product.image}"
-          alt="${product.name}"
-          class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-          loading="lazy"
-        />
-        <div class="absolute top-3 left-3">
-          <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${product.isVeg ? 'bg-success text-success-foreground' : 'bg-destructive text-destructive-foreground'}">
-            ${product.isVeg ? 'VEG' : 'NON-VEG'}
-          </span>
-        </div>
-        ${product.originalPrice ? `
-          <div class="absolute top-3 right-3">
-            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-destructive text-destructive-foreground">
-              Save ₹${discountAmount}
-            </span>
-          </div>
-        ` : ''}
-      </div>
-      
-      <div class="p-4">
-        <div class="space-y-3">
-          <div>
-            <h3 class="font-semibold text-card-foreground line-clamp-2 mb-1">
-              ${product.name}
-            </h3>
-            <p class="text-sm text-muted-foreground line-clamp-2">
-              ${product.description || ''}
-            </p>
-          </div>
-          
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="font-bold text-lg text-card-foreground">
-                ₹${product.price}
-              </span>
-              ${product.originalPrice ? `
-                <span class="text-sm text-muted-foreground line-through">
-                  ₹${product.originalPrice}
-                </span>
-              ` : ''}
-            </div>
-            
-            <button
-              onclick="handleAddToCart('${product.id}')"
-              class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md gradient-primary text-primary-foreground hover:opacity-90 shadow-soft transition-all duration-200"
-            >
-              <i data-lucide="plus" class="h-4 w-4 mr-1"></i>
-              Add
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
 function createCategoryCard(categoryCard) {
   return `
-    <div class="group overflow-hidden transition-all duration-300 hover:shadow-medium hover:-translate-y-1 border border-border/50 cursor-pointer rounded-lg bg-card" onclick="navigateToCategory('${categoryCard.category}')">
-      <div class="relative overflow-hidden h-32">
+    <div class="group overflow-hidden transition-all duration-300 hover:shadow-medium hover:-translate-y-1 cursor-pointer rounded-xl bg-card" onclick="navigateToCategory('${categoryCard.category}')">
+      <div class="relative overflow-hidden h-64">
         <img
           src="${categoryCard.image}"
           alt="${categoryCard.category}"
           class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-        <div class="absolute bottom-3 left-3 text-white">
-          <h3 class="font-semibold text-lg">${categoryCard.category}</h3>
-          <p class="text-sm opacity-90">${categoryCard.itemCount} items</p>
-          <p class="text-xs opacity-80 mt-1">${categoryCard.description}</p>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+        <div class="absolute bottom-4 left-4 right-4 text-white">
+          <h3 class="font-bold text-xl mb-2 leading-tight">${categoryCard.category}</h3>
+          <p class="text-sm opacity-90 mb-1">${categoryCard.description}</p>
+          <p class="text-xs opacity-75">${categoryCard.itemCount} varieties available</p>
         </div>
       </div>
     </div>
@@ -177,16 +114,6 @@ function createCartContent(items) {
 }
 
 // Global helper functions
-function handleAddToCart(productId) {
-  const product = PRODUCTS.find(p => p.id === productId);
-  if (product) {
-    cart.addItem(product);
-  }
-}
-
-function navigateToCategory(category) {
-  window.location.hash = `category/${category.toLowerCase()}`;
-}
 
 function handlePayment() {
   cart.showToast('Payment feature coming soon!');

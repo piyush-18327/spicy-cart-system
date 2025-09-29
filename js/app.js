@@ -2,9 +2,6 @@
 
 class BiryaniBluesApp {
   constructor() {
-    this.selectedCategory = 'All';
-    this.searchQuery = '';
-    this.vegOnly = false;
     this.init();
   }
 
@@ -92,8 +89,6 @@ class BiryaniBluesApp {
   renderHomePage() {
     const app = document.getElementById('app');
     
-    const filteredProducts = this.getFilteredProducts();
-    
     app.innerHTML = `
       <div class="min-h-screen bg-background">
         <!-- Header -->
@@ -119,77 +114,49 @@ class BiryaniBluesApp {
                 ⭐ 4.3 (1K+ reviews)
               </span>
             </div>
-            
-            <!-- Search -->
-            <div class="relative">
-              <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground"></i>
-              <input
-                type="text"
-                placeholder="Search for dishes..."
-                value="${this.searchQuery}"
-                class="w-full pl-10 pr-4 py-3 border border-border rounded-lg bg-card text-card-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                oninput="app.handleSearchChange(this.value)"
-              />
-            </div>
           </div>
         </div>
 
-        <!-- Hero Section -->
-        <div class="relative h-64 overflow-hidden">
+        <!-- Promotion Banner -->
+        <div class="relative h-80 overflow-hidden bg-gradient-to-r from-orange-400 via-red-400 to-pink-400">
           <img
-            src="src/assets/biryani-hero.jpg"
-            alt="Delicious Biryani"
-            class="w-full h-full object-cover"
+            src="https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Biryani Blues Promotion"
+            class="w-full h-full object-cover opacity-20"
           />
-          <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent">
+          <div class="absolute inset-0 flex items-center justify-center">
             <div class="container mx-auto px-4 h-full flex items-center">
-              <div class="text-white max-w-lg">
-                <h2 class="text-3xl font-bold mb-2">
-                  Authentic Hyderabadi Flavors
-                </h2>
-                <p class="text-lg opacity-90">
-                  Experience the rich taste of traditional biryani and kebabs
-                </p>
+              <div class="text-center text-white w-full">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="bg-white rounded-full p-3 mr-4">
+                    <span class="text-2xl font-bold text-primary">BB</span>
+                  </div>
+                  <h1 class="text-4xl font-bold">BIRYANI BLUES</h1>
+                </div>
+                <div class="bg-white/90 rounded-lg p-6 max-w-md mx-auto">
+                  <div class="text-6xl font-bold text-red-600 mb-2">
+                    FLAT <span class="text-red-700">₹150</span> OFF
+                  </div>
+                  <div class="text-2xl font-semibold text-blue-800 mb-4">
+                    FOR NEW USERS
+                  </div>
+                  <div class="bg-red-600 text-white px-4 py-2 rounded-lg inline-block">
+                    <span class="text-sm font-medium">USE CODE</span>
+                    <span class="text-lg font-bold ml-2">BBFIRST</span>
+                  </div>
+                  <div class="text-xs text-gray-600 mt-2">*T&C Apply</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Category Cards -->
+        <!-- What would you like to order? -->
         <div class="container mx-auto px-4 py-6">
-          <h2 class="text-xl font-bold mb-4">Browse Categories</h2>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">What would you like to order?</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             ${CATEGORY_CARDS.map(createCategoryCard).join('')}
           </div>
-          
-          <!-- Category Filter -->
-          <div class="flex gap-2 overflow-x-auto pb-2">
-            ${CATEGORIES.map(category => `
-              <button
-                onclick="app.handleCategoryChange('${category}')"
-                class="whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-colors ${
-                  this.selectedCategory === category 
-                    ? 'gradient-primary text-primary-foreground' 
-                    : 'border border-border text-card-foreground hover:bg-accent'
-                }"
-              >
-                ${category}
-              </button>
-            `).join('')}
-          </div>
-        </div>
-
-        <!-- Products Grid -->
-        <div class="container mx-auto px-4 pb-24">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            ${filteredProducts.map(product => createProductCard(product)).join('')}
-          </div>
-          
-          ${filteredProducts.length === 0 ? `
-            <div class="text-center py-12">
-              <p class="text-muted-foreground">No dishes found matching your search.</p>
-            </div>
-          ` : ''}
         </div>
       </div>
     `;
@@ -208,9 +175,6 @@ class BiryaniBluesApp {
       product.category.toLowerCase() === categoryName.toLowerCase()
     );
 
-    if (this.vegOnly) {
-      filteredProducts = filteredProducts.filter(product => product.isVeg);
-    }
 
     app.innerHTML = `
       <div class="min-h-screen bg-background">
@@ -227,19 +191,6 @@ class BiryaniBluesApp {
                 <p class="text-sm text-muted-foreground">${filteredProducts.length} items</p>
               </div>
               
-              <div class="flex items-center gap-2">
-                <span class="text-sm font-medium">Veg Only</span>
-                <button
-                  onclick="app.handleVegToggle()"
-                  class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    this.vegOnly ? 'bg-primary' : 'bg-muted'
-                  }"
-                >
-                  <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    this.vegOnly ? 'translate-x-6' : 'translate-x-1'
-                  }"></span>
-                </button>
-              </div>
 
               <button class="p-2 hover:bg-accent rounded-lg">
                 <i data-lucide="search" class="h-5 w-5"></i>
@@ -260,7 +211,7 @@ class BiryaniBluesApp {
                 <i data-lucide="utensils" class="h-8 w-8 text-muted-foreground"></i>
               </div>
               <p class="text-muted-foreground">
-                ${this.vegOnly ? 'No vegetarian items found in this category.' : 'No items found in this category.'}
+                No items found in this category.
               </p>
             </div>
           ` : ''}
@@ -271,32 +222,6 @@ class BiryaniBluesApp {
     // Initialize Lucide icons
     if (window.lucide) {
       window.lucide.createIcons();
-    }
-  }
-
-  getFilteredProducts() {
-    return PRODUCTS.filter(product => {
-      const matchesCategory = this.selectedCategory === 'All' || product.category === this.selectedCategory;
-      const matchesSearch = product.name.toLowerCase().includes(this.searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
-  }
-
-  handleSearchChange(value) {
-    this.searchQuery = value;
-    this.renderHomePage();
-  }
-
-  handleCategoryChange(category) {
-    this.selectedCategory = category;
-    this.renderHomePage();
-  }
-
-  handleVegToggle() {
-    this.vegOnly = !this.vegOnly;
-    const currentRoute = router.getCurrentRoute();
-    if (currentRoute && currentRoute.path === 'category') {
-      this.renderCategoryPage(currentRoute.params[0]);
     }
   }
 }
