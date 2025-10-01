@@ -116,7 +116,7 @@ const Index = () => {
       {/* Category Cards */}
       <div className="container mx-auto px-4 py-6">
         <h2 className="text-xl font-bold mb-4">Browse Categories</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 gap-4 mb-8">
           {categoryCards.map((categoryCard) => (
             <CategoryCard
               key={categoryCard.category}
