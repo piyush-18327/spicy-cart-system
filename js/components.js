@@ -2,19 +2,17 @@
 
 function createCategoryCard(categoryCard) {
   return `
-    <div class="group overflow-hidden transition-all duration-300 hover:shadow-medium hover:-translate-y-1 cursor-pointer rounded-xl bg-card" onclick="navigateToCategory('${categoryCard.category}')">
-      <div class="relative overflow-hidden h-64">
+    <div class="group overflow-hidden transition-all duration-300 hover:shadow-xl cursor-pointer rounded-2xl bg-card border border-gray-200" onclick="navigateToCategory('${categoryCard.category}')">
+      <div class="relative overflow-hidden h-72">
         <img
           src="${categoryCard.image}"
           alt="${categoryCard.category}"
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-        <div class="absolute bottom-4 left-4 right-4 text-white">
-          <h3 class="font-bold text-xl mb-2 leading-tight">${categoryCard.category}</h3>
-          <p class="text-sm opacity-90 mb-1">${categoryCard.description}</p>
-          <p class="text-xs opacity-75">${categoryCard.itemCount} varieties available</p>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+        <div class="absolute bottom-6 left-6 right-6 text-white">
+          <h3 class="font-bold text-2xl mb-1 leading-tight drop-shadow-lg">${categoryCard.category}</h3>
         </div>
       </div>
     </div>
@@ -113,7 +111,79 @@ function createCartContent(items) {
   `;
 }
 
+function createProductCard(product) {
+  const vegIndicator = product.isVeg
+    ? '<div class="w-5 h-5 border-2 border-green-600 flex items-center justify-center"><div class="w-2.5 h-2.5 rounded-full bg-green-600"></div></div>'
+    : '<div class="w-5 h-5 border-2 border-red-600 flex items-center justify-center"><div class="w-2.5 h-2.5 rounded-full bg-red-600"></div></div>';
+
+  const originalPriceHTML = product.originalPrice
+    ? `<span class="text-sm text-gray-400 line-through ml-2">₹${product.originalPrice}</span>`
+    : '';
+
+  const ratingHTML = product.rating
+    ? `<div class="flex items-center gap-1 text-sm">
+         <span class="text-yellow-500">⭐</span>
+         <span class="font-medium">${product.rating}</span>
+       </div>`
+    : '';
+
+  const servesHTML = product.serves
+    ? `<span class="text-xs text-gray-500">Serves ${product.serves}</span>`
+    : '';
+
+  return `
+    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+      <!-- Product Image -->
+      <div class="relative h-48 overflow-hidden bg-gray-100">
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <!-- Veg/Non-veg Indicator -->
+        <div class="absolute top-3 left-3 bg-white rounded p-1">
+          ${vegIndicator}
+        </div>
+        ${product.customizable ? '<div class="absolute top-3 right-3 bg-yellow-400 text-xs font-semibold px-2 py-1 rounded">CUSTOMIZABLE</div>' : ''}
+      </div>
+
+      <!-- Product Details -->
+      <div class="p-4">
+        <div class="flex items-start justify-between mb-2">
+          <h3 class="font-bold text-gray-900 text-base leading-tight flex-1">${product.name}</h3>
+          ${ratingHTML}
+        </div>
+
+        ${product.description ? `<p class="text-sm text-gray-600 mb-3 line-clamp-2">${product.description}</p>` : ''}
+
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-baseline">
+            <span class="text-lg font-bold text-gray-900">₹${product.price}</span>
+            ${originalPriceHTML}
+          </div>
+          ${servesHTML}
+        </div>
+
+        <!-- Add to Cart Button -->
+        <button
+          onclick="cart.addItem(PRODUCTS.find(p => p.id === '${product.id}'))"
+          class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+        >
+          <i data-lucide="plus" class="h-4 w-4"></i>
+          <span>ADD TO CART</span>
+        </button>
+      </div>
+    </div>
+  `;
+}
+
 // Global helper functions
+
+function navigateToCategory(categoryName) {
+  const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  router.navigate(`category/${categorySlug}`);
+}
 
 function handlePayment() {
   cart.showToast('Payment feature coming soon!');

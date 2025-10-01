@@ -118,36 +118,87 @@ class BiryaniBluesApp {
         </div>
 
         <!-- Promotion Banner -->
-        <div class="relative h-80 overflow-hidden bg-gradient-to-r from-orange-400 via-red-400 to-pink-400">
-          <img
-            src="https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="Biryani Blues Promotion"
-            class="w-full h-full object-cover opacity-20"
-          />
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="container mx-auto px-4 h-full flex items-center">
-              <div class="text-center text-white w-full">
-                <div class="flex items-center justify-center mb-4">
-                  <div class="bg-white rounded-full p-3 mr-4">
-                    <span class="text-2xl font-bold text-primary">BB</span>
+        <div class="relative bg-gray-100 overflow-hidden" style="min-height: 350px;">
+          <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+              <!-- Left Side: Branding and Offer -->
+              <div class="flex-1 text-center md:text-left">
+                <!-- Logo and Brand Name -->
+                <div class="flex items-center justify-center md:justify-start mb-6 gap-3">
+                  <!-- Left Palm Tree -->
+                  <div class="text-green-600">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C10.5 2 9.5 3 9.5 4.5C9.5 5 9.7 5.5 10 5.8C9.3 6.1 8.8 6.8 8.8 7.6C8.8 8.7 9.7 9.6 10.8 9.6H11V22H13V9.6H13.2C14.3 9.6 15.2 8.7 15.2 7.6C15.2 6.8 14.7 6.1 14 5.8C14.3 5.5 14.5 5 14.5 4.5C14.5 3 13.5 2 12 2Z"/>
+                    </svg>
                   </div>
-                  <h1 class="text-4xl font-bold">BIRYANI BLUES</h1>
+
+                  <!-- Logo Circle and Text -->
+                  <div class="flex items-center gap-2">
+                    <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md border-2 border-blue-900">
+                      <span class="text-xl font-bold text-red-600">B</span>
+                    </div>
+                    <div>
+                      <div class="text-xs text-blue-900 font-semibold leading-tight">BIRYANI</div>
+                      <div class="text-xs text-blue-900 font-semibold leading-tight">BLUES</div>
+                    </div>
+                  </div>
+
+                  <!-- Right Palm Tree -->
+                  <div class="text-green-600">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C10.5 2 9.5 3 9.5 4.5C9.5 5 9.7 5.5 10 5.8C9.3 6.1 8.8 6.8 8.8 7.6C8.8 8.7 9.7 9.6 10.8 9.6H11V22H13V9.6H13.2C14.3 9.6 15.2 8.7 15.2 7.6C15.2 6.8 14.7 6.1 14 5.8C14.3 5.5 14.5 5 14.5 4.5C14.5 3 13.5 2 12 2Z"/>
+                    </svg>
+                  </div>
+
+                  <h1 class="text-3xl md:text-4xl font-bold text-blue-900">BIRYANI BLUES</h1>
                 </div>
-                <div class="bg-white/90 rounded-lg p-6 max-w-md mx-auto">
-                  <div class="text-6xl font-bold text-red-600 mb-2">
-                    FLAT <span class="text-red-700">₹150</span> OFF
+
+                <!-- Offer Card -->
+                <div class="bg-white rounded-lg shadow-lg p-6 inline-block border-2 border-gray-200">
+                  <div class="mb-2">
+                    <span class="text-gray-700 font-semibold text-lg">FLAT</span>
                   </div>
-                  <div class="text-2xl font-semibold text-blue-800 mb-4">
+                  <div class="mb-3">
+                    <span class="text-red-600 font-bold text-6xl">₹150</span>
+                    <span class="text-blue-900 font-bold text-3xl ml-2">OFF</span>
+                  </div>
+                  <div class="text-blue-900 font-bold text-xl mb-4 border-t border-b border-gray-300 py-2">
                     FOR NEW USERS
                   </div>
-                  <div class="bg-red-600 text-white px-4 py-2 rounded-lg inline-block">
-                    <span class="text-sm font-medium">USE CODE</span>
-                    <span class="text-lg font-bold ml-2">BBFIRST</span>
+                  <div class="bg-red-600 text-white px-6 py-2 rounded inline-block">
+                    <span class="text-xs font-semibold">USE CODE</span>
+                    <span class="text-base font-bold ml-2 tracking-wider">BBFIRST</span>
                   </div>
-                  <div class="text-xs text-gray-600 mt-2">*T&C Apply</div>
+                  <div class="text-xs text-gray-600 mt-3">*T&C Apply</div>
+                </div>
+              </div>
+
+              <!-- Right Side: Food Image -->
+              <div class="flex-1 relative hidden md:block">
+                <!-- Decorative Shapes -->
+                <div class="absolute -top-4 -right-4 w-24 h-24 bg-orange-400 rounded-full opacity-60 z-0"></div>
+                <div class="absolute bottom-0 left-0 w-32 h-32 bg-green-500 rounded-full opacity-40 z-0" style="clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"></div>
+
+                <!-- Biryani Image in Pan -->
+                <div class="relative z-10">
+                  <img
+                    src="https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?auto=compress&cs=tinysrgb&w=600"
+                    alt="Delicious Biryani"
+                    class="w-full max-w-md mx-auto rounded-lg shadow-2xl"
+                  />
+                  <!-- Garnish Elements -->
+                  <div class="absolute -top-6 -right-6 w-20 h-20 bg-yellow-400 rounded-full opacity-70"></div>
+                  <div class="absolute -bottom-4 right-12 w-16 h-16 bg-red-500 rounded-full opacity-50"></div>
                 </div>
               </div>
             </div>
+          </div>
+
+          <!-- Carousel Indicators -->
+          <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+            <div class="w-2 h-2 rounded-full bg-red-600"></div>
+            <div class="w-2 h-2 rounded-full bg-gray-400"></div>
+            <div class="w-2 h-2 rounded-full bg-gray-400"></div>
           </div>
         </div>
 
@@ -169,10 +220,23 @@ class BiryaniBluesApp {
 
   renderCategoryPage(categoryName) {
     const app = document.getElementById('app');
-    const formattedCategory = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
-    
-    let filteredProducts = PRODUCTS.filter(product => 
-      product.category.toLowerCase() === categoryName.toLowerCase()
+
+    const categorySlug = categoryName.toLowerCase();
+    const categoryMap = {
+      'hyderabadi-lucknowi-dum-biryanis': 'Biryani',
+      'biryani-thalis': 'Biryani',
+      'celebration-handi-biryanis': 'Biryani',
+      'supersaver-mini-biryanis-starting-rs99-': 'Biryani',
+      'starters': 'Starters',
+      'sides': 'Sides',
+      'beverages': 'Beverages'
+    };
+
+    const actualCategory = categoryMap[categorySlug] || categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+    const formattedCategory = categoryName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+    let filteredProducts = PRODUCTS.filter(product =>
+      product.category.toLowerCase() === actualCategory.toLowerCase()
     );
 
 
